@@ -1,11 +1,21 @@
+// thaw-image-utilities.js/src/main.js
+
 'use strict';
 
 const fs = require('fs');
 const jpeg = require('jpeg-js');
 
-function createImage (width, height, bytesPerPixel = 4) {
-	const bytesPerLine = bytesPerPixel * width;
-	//const bytesPerLine = Math.ceil(bytesPerPixel * width / 4) * 4;	// Ensure 4-byte alignment.
+const defaultBytesPerPixel = 4;
+const defaultJpegQuality = 50;
+// const byteAlignmentOfLines = 4;
+
+function getBytesPerLine (width, bytesPerPixel) {
+	return width * bytesPerPixel;
+	// return Math.ceil(width * bytesPerPixel / byteAlignmentOfLines) * byteAlignmentOfLines;
+}
+
+function createImage (width, height, bytesPerPixel = defaultBytesPerPixel) {
+	const bytesPerLine = getBytesPerLine(width, bytesPerPixel);
 
 	return {
 		width: width,
@@ -20,15 +30,13 @@ function loadImageFromJpegFile (srcFilePath) {
 	const srcJpegData = fs.readFileSync(srcFilePath);
 	const srcImage = jpeg.decode(srcJpegData);
 
-	srcImage.bytesPerPixel = 4;
-	//srcImage.bytesPerLine = Math.ceil(srcImage.width * srcImage.bytesPerPixel / 4) * 4;
-	srcImage.bytesPerLine = srcImage.width * srcImage.bytesPerPixel;
+	srcImage.bytesPerPixel = defaultBytesPerPixel;
+	srcImage.bytesPerLine = getBytesPerLine(srcImage.width * srcImage.bytesPerPixel);
 
 	return srcImage;
 }
 
 function saveImageToJpegFile (dstImage, dstFilePath, dstQuality) {
-	const defaultJpegQuality = 50;
 
 	if (!dstImage) {
 		console.error('saveImageToJpegFile() : Error: dstImage is', dstImage);

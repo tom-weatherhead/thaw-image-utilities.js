@@ -2,7 +2,7 @@
 
 'use strict';
 
-module.exports = function (grunt) {
+module.exports = grunt => {
 	const packageJsonFilename = 'package.json';
 	const gruntfile = grunt.file.readJSON(packageJsonFilename);
 
@@ -11,8 +11,8 @@ module.exports = function (grunt) {
 		eslint: {
 			target: [
 				'*.js',
-				'src/*.js' /*,
-				'test/*.js' */
+				'src/*.js',
+				'test/*.js'
 			]
 		},
 		/* mochaTest: {
@@ -34,7 +34,7 @@ module.exports = function (grunt) {
 	// Tasks
 	grunt.loadNpmTasks('grunt-eslint');
 	// grunt.loadNpmTasks('grunt-mocha-test');
-	grunt.loadNpmTasks('grunt-contrib-nodeunit'); // $ npm i -D grunt-contrib-nodeunit
+	grunt.loadNpmTasks('grunt-contrib-nodeunit');
 	grunt.loadNpmTasks('grunt-nsp');
 
 	// Aliases
@@ -44,11 +44,8 @@ module.exports = function (grunt) {
 
 	// New: $ npm i -D grunt grunt-cli grunt-eslint grunt-contrib-nodeunit grunt-nsp
 	// - Also install nodeunit-httpclient for Web tests.
-	// New: grunt.registerTask('test', ['eslint', 'nodeunit', 'nsp']);
-	grunt.registerTask('test', ['eslint', 'nsp']);
 
-	// Temporary hack, for use while we are pounding the C# code into the shape of JavaScript:
-	// grunt.registerTask('test', ['nodeunit']);
+	grunt.registerTask('test', ['eslint', 'nodeunit', 'nsp']);
 
 	grunt.registerTask('default', ['test']);
 };
