@@ -15,27 +15,14 @@ module.exports = grunt => {
 				'test/*.js'
 			]
 		},
-		/* mochaTest: {
-			options: {
-				reporter: 'spec'
-			},
-			test: {
-				src: ['test/*_spec.js']
-			}
-		}, */
 		nodeunit: {
 			all: ['test/*_nodeunit.js']
-		},
-		nsp: {
-			package: gruntfile
 		}
 	});
 
 	// Tasks
 	grunt.loadNpmTasks('grunt-eslint');
-	// grunt.loadNpmTasks('grunt-mocha-test');
 	grunt.loadNpmTasks('grunt-contrib-nodeunit');
-	grunt.loadNpmTasks('grunt-nsp');
 
 	// Aliases
 
@@ -45,7 +32,7 @@ module.exports = grunt => {
 	// New: $ npm i -D grunt grunt-cli grunt-eslint grunt-contrib-nodeunit grunt-nsp
 	// - Also install nodeunit-httpclient for Web tests.
 
-	grunt.registerTask('test', ['eslint', 'nodeunit', 'nsp']);
+	grunt.registerTask('test', ['eslint', 'nodeunit']);
 
 	grunt.registerTask('default', ['test']);
 };
