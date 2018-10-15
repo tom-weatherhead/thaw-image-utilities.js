@@ -5,14 +5,14 @@
 const fs = require('fs');
 const jpeg = require('jpeg-js');
 
-// const imageEngine = require('./thawimage.js');
-// const ThAWImage = imageEngine.ThAWImage;
+const imageEngine = require('./thawimage.js');
+const ThAWImage = imageEngine.ThAWImage;
 
-const defaultBytesPerPixel = 4;
+// const defaultBytesPerPixel = 4;
 const defaultJpegQuality = 50;
 // const byteAlignmentOfLines = 4;
 
-/* */
+/*
 function getBytesPerLine (width, bytesPerPixel) {
 	return width * bytesPerPixel;
 	// return Math.ceil(width * bytesPerPixel / byteAlignmentOfLines) * byteAlignmentOfLines;
@@ -20,6 +20,7 @@ function getBytesPerLine (width, bytesPerPixel) {
 /* */
 
 function createImage (width, height, bytesPerPixel = undefined) {
+	/*
 	console.log('createImage() : bytesPerPixel is', bytesPerPixel);
 	console.log('createImage() : defaultBytesPerPixel is', defaultBytesPerPixel);
 
@@ -39,11 +40,10 @@ function createImage (width, height, bytesPerPixel = undefined) {
 		bytesPerLine: bytesPerLine,
 		data: Buffer.alloc(bytesPerLine * height)		// Buffer.unsafealloc() ?
 	};
-	/*
 	console.log('ThAWImage is', ThAWImage);
+	*/
 
 	return new ThAWImage(width, height, bytesPerPixel);
-	*/
 }
 
 function loadImageFromJpegFile (srcFilePath) {
@@ -52,6 +52,7 @@ function loadImageFromJpegFile (srcFilePath) {
 
 	console.log('loadImageFromJpegFile() : srcImage before is', srcImage);
 
+	/*
 	srcImage.bytesPerPixel = defaultBytesPerPixel;
 	srcImage.bytesPerLine = getBytesPerLine(srcImage.width, srcImage.bytesPerPixel);
 
@@ -59,11 +60,10 @@ function loadImageFromJpegFile (srcFilePath) {
 
 	return srcImage;
 
-	/*
 	console.log('ThAWImage is', ThAWImage);
+	*/
 
 	return new ThAWImage(srcImage.width, srcImage.height, 0, 0, srcImage.data);
-	*/
 }
 
 function saveImageToJpegFile (dstImage, dstFilePath, dstQuality) {

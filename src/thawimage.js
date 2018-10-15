@@ -15,7 +15,7 @@ class ThAWImage {
 		this.height = height;
 		this.bytesPerPixel = bytesPerPixel ? bytesPerPixel : defaultBytesPerPixel;
 		this.bytesPerLine = bytesPerLine ? bytesPerLine : getBytesPerLine(this.width, this.bytesPerPixel);
-		this.data = data ? data : Buffer.alloc(this.bytesPerLine * this.height);
+		this.data = data ? data : Buffer.alloc(this.bytesPerLine * this.height); // Buffer.unsafealloc() ?
 		console.log('this.width is', this.width);
 		console.log('this.height is', this.height);
 		console.log('this.bytesPerPixel is', this.bytesPerPixel);
