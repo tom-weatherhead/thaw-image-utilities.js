@@ -12,12 +12,17 @@ module.exports = {
 		},
 		test: function (test) {
 			console.log('nodeunit: Test \'Create ThAWImage\' : test()');
+			console.log('nodeunit: Test \'Create ThAWImage\' : engine is', engine);
+			// console.log('nodeunit: Test \'Create ThAWImage\' : engine.imageEngine is', engine.imageEngine);
 
-			const image = new engine.imageEngine.ThAWImage(7, 13);
+			// const image = new engine.imageEngine.ThAWImage(7, 13);
+			const image = engine.createImage(7, 13);
 
-			test.expect(2);
+			test.expect(4);
 			test.strictEqual(image.width, 7, '');
 			test.strictEqual(image.height, 13, '');
+			test.strictEqual(image.bytesPerPixel, 4, '');
+			test.strictEqual(image.bytesPerLine, 28, '');
 			test.done();
 		}
 	}

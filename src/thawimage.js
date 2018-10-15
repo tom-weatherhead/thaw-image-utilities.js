@@ -15,7 +15,12 @@ class ThAWImage {
 		this.height = height;
 		this.bytesPerPixel = bytesPerPixel ? bytesPerPixel : defaultBytesPerPixel;
 		this.bytesPerLine = bytesPerLine ? bytesPerLine : getBytesPerLine(this.width, this.bytesPerPixel);
-		this.data = data ? data : Buffer.alloc(bytesPerLine * height);
+		this.data = data ? data : Buffer.alloc(this.bytesPerLine * this.height);
+		console.log('this.width is', this.width);
+		console.log('this.height is', this.height);
+		console.log('this.bytesPerPixel is', this.bytesPerPixel);
+		console.log('this.bytesPerLine is', this.bytesPerLine);
+		console.log('this.data is', this.data);
 	}
 
 	test () {
@@ -24,6 +29,6 @@ class ThAWImage {
 }
 
 module.exports = {
-	ThAWImage: ThAWImage,
-	defaultBytesPerPixel: defaultBytesPerPixel
+	ThAWImage: ThAWImage // ,
+	// defaultBytesPerPixel: defaultBytesPerPixel
 };

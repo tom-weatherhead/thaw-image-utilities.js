@@ -5,21 +5,32 @@
 const fs = require('fs');
 const jpeg = require('jpeg-js');
 
-const imageEngine = require('./thawimage.js');
-const ThAWImage = imageEngine.ThAWImage;
+// const imageEngine = require('./thawimage.js');
+// const ThAWImage = imageEngine.ThAWImage;
 
-// const defaultBytesPerPixel = 4;
+const defaultBytesPerPixel = 4;
 const defaultJpegQuality = 50;
 // const byteAlignmentOfLines = 4;
 
+/* */
 function getBytesPerLine (width, bytesPerPixel) {
 	return width * bytesPerPixel;
 	// return Math.ceil(width * bytesPerPixel / byteAlignmentOfLines) * byteAlignmentOfLines;
 }
+/* */
 
 function createImage (width, height, bytesPerPixel = undefined) {
-	/*
+	console.log('createImage() : bytesPerPixel is', bytesPerPixel);
+	console.log('createImage() : defaultBytesPerPixel is', defaultBytesPerPixel);
+
+	if (!bytesPerPixel) {
+		bytesPerPixel = defaultBytesPerPixel;
+		console.log('createImage() : bytesPerPixel is now', bytesPerPixel);
+	}
+
 	const bytesPerLine = getBytesPerLine(width, bytesPerPixel);
+
+	console.log('createImage() : bytesPerLine is', bytesPerLine);
 
 	return {
 		width: width,
@@ -28,21 +39,35 @@ function createImage (width, height, bytesPerPixel = undefined) {
 		bytesPerLine: bytesPerLine,
 		data: Buffer.alloc(bytesPerLine * height)		// Buffer.unsafealloc() ?
 	};
-	*/
+	/*
+	console.log('ThAWImage is', ThAWImage);
+
 	return new ThAWImage(width, height, bytesPerPixel);
+	*/
 }
 
 function loadImageFromJpegFile (srcFilePath) {
 	const srcJpegData = fs.readFileSync(srcFilePath);
 	const srcImage = jpeg.decode(srcJpegData);
 
-	srcImage.bytesPerPixel = imageEngine.defaultBytesPerPixel;
-	srcImage.bytesPerLine = getBytesPerLine(srcImage.width * srcImage.bytesPerPixel);
+	console.log('loadImageFromJpegFile() : srcImage before is', srcImage);
+
+	srcImage.bytesPerPixel = defaultBytesPerPixel;
+	srcImage.bytesPerLine = getBytesPerLine(srcImage.width, srcImage.bytesPerPixel);
+
+	console.log('loadImageFromJpegFile() : srcImage after is', srcImage);
 
 	return srcImage;
+
+	/*
+	console.log('ThAWImage is', ThAWImage);
+
+	return new ThAWImage(srcImage.width, srcImage.height, 0, 0, srcImage.data);
+	*/
 }
 
 function saveImageToJpegFile (dstImage, dstFilePath, dstQuality) {
+	console.log('saveImageToJpegFile() : dstImage is', dstImage);
 
 	if (!dstImage) {
 		console.error('saveImageToJpegFile() : Error: dstImage is', dstImage);
@@ -61,7 +86,7 @@ function saveImageToJpegFile (dstImage, dstFilePath, dstQuality) {
 }
 
 module.exports = {
-	imageEngine: imageEngine,
+	// imageEngine: imageEngine,
 	createImage: createImage,
 	loadImageFromJpegFile: loadImageFromJpegFile,
 	saveImageToJpegFile: saveImageToJpegFile
