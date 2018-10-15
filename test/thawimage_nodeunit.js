@@ -12,7 +12,7 @@ module.exports = {
 		},
 		test: function (test) {
 			console.log('nodeunit: Test \'Create ThAWImage\' : test()');
-			console.log('nodeunit: Test \'Create ThAWImage\' : engine is', engine);
+			// console.log('nodeunit: Test \'Create ThAWImage\' : engine is', engine);
 			// console.log('nodeunit: Test \'Create ThAWImage\' : engine.imageEngine is', engine.imageEngine);
 
 			// const image = new engine.imageEngine.ThAWImage(7, 13);

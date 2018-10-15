@@ -5,7 +5,7 @@
 const fs = require('fs');
 const jpeg = require('jpeg-js');
 
-const imageEngine = require('./thawimage.js');
+const imageEngine = require('./thawimage');
 const ThAWImage = imageEngine.ThAWImage;
 
 // const defaultBytesPerPixel = 4;
@@ -50,9 +50,9 @@ function loadImageFromJpegFile (srcFilePath) {
 	const srcJpegData = fs.readFileSync(srcFilePath);
 	const srcImage = jpeg.decode(srcJpegData);
 
+	/*
 	console.log('loadImageFromJpegFile() : srcImage before is', srcImage);
 
-	/*
 	srcImage.bytesPerPixel = defaultBytesPerPixel;
 	srcImage.bytesPerLine = getBytesPerLine(srcImage.width, srcImage.bytesPerPixel);
 
@@ -67,7 +67,7 @@ function loadImageFromJpegFile (srcFilePath) {
 }
 
 function saveImageToJpegFile (dstImage, dstFilePath, dstQuality) {
-	console.log('saveImageToJpegFile() : dstImage is', dstImage);
+	// console.log('saveImageToJpegFile() : dstImage is', dstImage);
 
 	if (!dstImage) {
 		console.error('saveImageToJpegFile() : Error: dstImage is', dstImage);
