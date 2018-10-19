@@ -2,7 +2,7 @@
 
 'use strict';
 
-const fs = require('fs');
+// const fs = require('fs');
 const jpeg = require('jpeg-js');
 
 const imageEngine = require('./thawimage');
@@ -46,48 +46,70 @@ function createImage (width, height, bytesPerPixel = undefined) {
 	return new ThAWImage(width, height, bytesPerPixel);
 }
 
-function loadImageFromJpegFile (srcFilePath) {
-	const srcJpegData = fs.readFileSync(srcFilePath);
-	const srcImage = jpeg.decode(srcJpegData);
+function factory_loadImageFromJpegFile (options) {
+	return srcFilePath => {
+		const srcJpegData = options.fs.readFileSync(srcFilePath);
+		const srcImage = jpeg.decode(srcJpegData);
 
-	/*
-	console.log('loadImageFromJpegFile() : srcImage before is', srcImage);
+		/*
+		console.log('loadImageFromJpegFile() : srcImage before is', srcImage);
 
-	srcImage.bytesPerPixel = defaultBytesPerPixel;
-	srcImage.bytesPerLine = getBytesPerLine(srcImage.width, srcImage.bytesPerPixel);
+		srcImage.bytesPerPixel = defaultBytesPerPixel;
+		srcImage.bytesPerLine = getBytesPerLine(srcImage.width, srcImage.bytesPerPixel);
 
-	console.log('loadImageFromJpegFile() : srcImage after is', srcImage);
+		console.log('loadImageFromJpegFile() : srcImage after is', srcImage);
 
-	return srcImage;
+		return srcImage;
 
-	console.log('ThAWImage is', ThAWImage);
-	*/
+		console.log('ThAWImage is', ThAWImage);
+		*/
 
-	return new ThAWImage(srcImage.width, srcImage.height, 0, 0, srcImage.data);
+		return new ThAWImage(srcImage.width, srcImage.height, 0, 0, srcImage.data);
+	};
 }
 
-function saveImageToJpegFile (dstImage, dstFilePath, dstQuality) {
-	// console.log('saveImageToJpegFile() : dstImage is', dstImage);
+function factory_saveImageToJpegFile (options) {
+	return (dstImage, dstFilePath, dstQuality) => {
+		// console.log('saveImageToJpegFile() : dstImage is', dstImage);
 
-	if (!dstImage) {
-		console.error('saveImageToJpegFile() : Error: dstImage is', dstImage);
-	} else {
-
-		if (dstQuality === undefined || dstQuality < 0 || dstQuality > 100) {
-			dstQuality = defaultJpegQuality;
+		if (!dstImage) {
+			console.error('saveImageToJpegFile() : Error: dstImage is', dstImage);
 		} else {
-			dstQuality = Math.round(dstQuality);
+
+			if (dstQuality === undefined || dstQuality < 0 || dstQuality > 100) {
+				dstQuality = defaultJpegQuality;
+			} else {
+				dstQuality = Math.round(dstQuality);
+			}
+
+			const dstJpegData = jpeg.encode(dstImage, dstQuality);
+
+			options.fs.writeFileSync(dstFilePath, dstJpegData.data);
 		}
-
-		const dstJpegData = jpeg.encode(dstImage, dstQuality);
-
-		fs.writeFileSync(dstFilePath, dstJpegData.data);
-	}
+	};
 }
 
-module.exports = {
-	// imageEngine: imageEngine,
-	createImage: createImage,
-	loadImageFromJpegFile: loadImageFromJpegFile,
-	saveImageToJpegFile: saveImageToJpegFile
+module.exports = options => {
+	let result = {
+		// imageEngine: imageEngine,
+		createImage: createImage
+	};
+
+	if (options && options.fs) {
+		result.loadImageFromJpegFile = factory_loadImageFromJpegFile(options);
+		result.saveImageToJpegFile = factory_saveImageToJpegFile(options);
+	} else {
+		result.loadImageFromJpegFile = srcFilePath => {
+			console.log('Stub: loadImageFromJpegFile:');
+			console.log('  srcFilePath is', srcFilePath);
+		};
+		result.saveImageToJpegFile = (dstImage, dstFilePath, dstQuality) => {
+			console.log('Stub: saveImageToJpegFile:');
+			console.log('  dstImage is', dstImage);
+			console.log('  dstFilePath is', dstFilePath);
+			console.log('  dstQuality is', dstQuality);
+		};
+	}
+
+	return result;
 };

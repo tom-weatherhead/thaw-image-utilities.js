@@ -2,7 +2,7 @@
 
 'use strict';
 
-const engine = require('..');
+const engine = require('..')();
 
 module.exports = {
 	'Create ThAWImage': {

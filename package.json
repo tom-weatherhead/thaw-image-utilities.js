@@ -1,7 +1,7 @@
 {
 	"name": "thaw-image-utilities.js",
 	"description": "Raster image utilities written in JavaScript",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/tom-weatherhead/thaw-image-utilities.js.git"
@@ -22,6 +22,10 @@
 		"grunt": "^1.0.3",
 		"grunt-contrib-nodeunit": "^2.0.0",
 		"grunt-eslint": "^21.0.0"
+	},
+	"engineStrict": true,
+	"engines": {
+		"node": ">=8.0.0"
 	},
 	"keywords": [
 		"jpeg",
