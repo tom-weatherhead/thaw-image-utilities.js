@@ -1,7 +1,7 @@
 {
 	"name": "thaw-image-utilities.js",
 	"description": "Raster image utilities written in JavaScript",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/tom-weatherhead/thaw-image-utilities.js.git"
@@ -12,20 +12,23 @@
 	},
 	"main": "src/main",
 	"scripts": {
+		"build": "npm i && grunt",
+		"clean": "rm -rf node_modules && rm -f package-lock.json",
 		"start": "grunt",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "grunt test"
 	},
 	"dependencies": {
-		"jpeg-js": "^0.3.4"
+		"jpeg-js": "^0.3.6"
 	},
 	"devDependencies": {
-		"grunt": "^1.0.3",
-		"grunt-contrib-nodeunit": "^2.0.0",
-		"grunt-eslint": "^21.0.0"
+		"grunt": "^1.0.4",
+		"grunt-eslint": "^22.0.0",
+		"grunt-mocha-test": "^0.13.3",
+		"mocha": "^6.2.0"
 	},
 	"engineStrict": true,
 	"engines": {
-		"node": ">=8.0.0"
+		"node": ">= 8"
 	},
 	"keywords": [
 		"jpeg",

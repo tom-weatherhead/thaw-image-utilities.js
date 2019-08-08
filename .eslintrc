@@ -2,11 +2,14 @@
 	"globals": {
 		"Buffer": true,
 		"console": true,
+		"describe": true,
+		"it": true,
 		"module": true,
 		"require": true
 	},
 	"parserOptions": {
-		"ecmaVersion": 2018
+		"ecmaVersion": 2018,
+		"sourceType": "module"
 	},
 	"rules": {
 		"arrow-parens": [2, "as-needed"],
