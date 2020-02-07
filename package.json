@@ -1,11 +1,8 @@
 {
 	"name": "thaw-image-utilities.js",
 	"description": "Raster image utilities written in JavaScript",
-	"version": "0.0.5",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/tom-weatherhead/thaw-image-utilities.js.git"
-	},
+	"version": "0.0.6",
+	"repository": "github:tom-weatherhead/thaw-image-utilities.js",
 	"homepage": "https://github.com/tom-weatherhead/thaw-image-utilities.js#readme",
 	"bugs": {
 		"url": "https://github.com/tom-weatherhead/thaw-image-utilities.js/issues"
@@ -25,9 +22,8 @@
 		"jpeg-js": "^0.3.6"
 	},
 	"devDependencies": {
-		"babel-mixin": "^0.0.8"
+		"babel-mixin": "^0.0.9"
 	},
-	"engineStrict": true,
 	"engines": {
 		"node": ">= 8"
 	},
@@ -35,6 +31,6 @@
 		"jpeg",
 		"raster image"
 	],
-	"author": "Tom Weatherhead <null@2hrd4u.org> (https://httpbin.org/status/418)",
+	"author": "Tom Weatherhead <null@2hrd4u.org> (https://github.com/tom-weatherhead)",
 	"license": "MIT"
 }
