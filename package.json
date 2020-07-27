@@ -22,7 +22,7 @@
 		"test": "grunt test"
 	},
 	"dependencies": {
-		"jpeg-js": "^0.3.6"
+		"jpeg-js": "^0.4.0"
 	},
 	"devDependencies": {
 		"babel-mixin": "^0.0.8"
