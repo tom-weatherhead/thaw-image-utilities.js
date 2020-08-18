@@ -12,14 +12,6 @@ module.exports = {
 	"coverageDirectory": "./coverage/",
 	"moduleFileExtensions": ["js", "json"],
 	"testEnvironment": "node",
-	// "testRegex": "(/test/.+\\.test\\.ts$)" // ,
-	"testRegex": "(/test/.+\\_spec\\.js$)" // ,
+	"testRegex": "(/test/.+\\.test\\.js$)" // ,
 	// "transformIgnorePatterns": ["/node_modules/(?!thaw-common-utilities.ts)/"]
 };
-
-// {
-// 	"testRegex": "(/test/thawimage_spec\\.js$)",
-// 	"moduleFileExtensions": ["js", "json"],
-// 	"coverageDirectory": "./coverage/",
-// 	"collectCoverage": true
-// }

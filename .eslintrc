@@ -2,10 +2,10 @@
 	"globals": {
 		"Buffer": true,
 		"console": true,
-		"describe": true,
-		"it": true,
+		"expect": true,
 		"module": true,
-		"require": true
+		"require": true,
+		"test": true
 	},
 	"parserOptions": {
 		"ecmaVersion": 2018,
@@ -35,7 +35,7 @@
 		"handle-callback-err": [0],
 		"indent": ["error", "tab", {"VariableDeclarator": {"var": 1, "let": 1, "const": 1}, "SwitchCase": 1}],
 		"key-spacing": [2, { "beforeColon": false, "afterColon": true }],
-		"quotes": [2, "single", "avoid-escape"],
+		"quotes": [1, "single", "avoid-escape"],
 		"max-depth": [0, 4],
 		"max-len": [0, 80, 4],
 		"max-nested-callbacks": [0, 2],
