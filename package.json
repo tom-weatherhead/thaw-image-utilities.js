@@ -13,16 +13,16 @@
 	],
 	"scripts": {
 		"all": "npm run clean && npm run build",
-		"build": "npm i && grunt",
+		"build": "npm i && grunt && npm test",
 		"clean": "rm -rf node_modules && rm -f package-lock.json",
 		"start": "grunt",
-		"test": "grunt test"
+		"test": "jest"
 	},
 	"dependencies": {
-		"jpeg-js": "^0.3.6"
+		"jpeg-js": "^0.4.1"
 	},
 	"devDependencies": {
-		"babel-mixin": "^0.0.9"
+		"babel-mixin": "file:babel-mixin.tgz"
 	},
 	"engines": {
 		"node": ">= 8"

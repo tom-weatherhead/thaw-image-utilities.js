@@ -51,6 +51,10 @@ function factory_loadImageFromJpegFile (options) {
 		const srcJpegData = options.fs.readFileSync(srcFilePath);
 		const srcImage = jpeg.decode(srcJpegData);
 
+		// const srcImage = jpeg.decode(srcJpegData, { useTArray: true });
+		// When options.useTArray is true, jpeg.decode() will return a Uint8Array instead of a Buffer.
+		// Note: There is also options.colorTransform
+
 		/*
 		console.log('loadImageFromJpegFile() : srcImage before is', srcImage);
 
